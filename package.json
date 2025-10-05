@@ -1,0 +1,30 @@
+{
+  "name": "@ricardoneud.com/api",
+  "version": "1.1.1",
+  "description": "Official SDK for the API from Ricardoneud.com, fully compatible with all environments supported by npm",
+  "homepage": "https://ricardoneud.com",
+  "bugs": {
+    "url": "https://ricardoneud.com/contact"
+  },
+  "license": "MIT",
+  "author": "Ricardoneud.com",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "module": "dist/index.esm.js"
+}
