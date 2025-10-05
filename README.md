@@ -9,6 +9,10 @@ This guide explains how to use the **official NPM module** to interact with the 
 ```bash
 npm install @ricardoneud.com/api
 ```
+OR
+```bash
+yarn add @ricardoneud.com/api
+```
 
 ## Initialization
 
