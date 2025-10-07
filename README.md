@@ -114,7 +114,7 @@ const loginResponse = await api.user.login('usernameOrEmail', 'password', true);
 await api.user.revokeSecret('usernameOrEmail', 'password', 'secret-token');
 ```
 
-### OAuth
+### OAuth2
 
 ```javascript
 const token = await api.oauth2.getAccessToken('code', 'redirectUri', 'clientId', 'clientSecret');
