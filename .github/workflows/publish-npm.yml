@@ -1,4 +1,4 @@
-name: Automated npm update
+name: Publish Package
 
 on:
   release:
@@ -6,48 +6,24 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
+  id-token: write  # Required for OIDC
+  contents: read
 
 jobs:
-  npm-update:
-    env:
-      pr_title: '[Automated] Update NPM dependencies'
-
+  publish:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          cache: 'npm'
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Update packages
-        run: npm update
-
-      - name: Check for changes
-        id: git-check
-        run: |
-          if ! git diff --exit-code; then
-            echo "changes=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Create Pull Request
-        if: ${{ steps.git-check.outputs.changes == 'true' }}
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          base: main
-          add-paths: package-lock.json
-          commit-message: Update npm dependencies
-          title: ${{ env.pr_title }}
-          body: 'Automated changes by GitHub Actions after release'
-          branch: automated-npm-update
-          delete-branch: true
+      # Ensure npm 11.5.1 or later is installed
+      - name: Update npm
+        run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
+      - run: npm publish --access public
