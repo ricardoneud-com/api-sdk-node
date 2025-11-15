@@ -1,6 +1,6 @@
 {
   "name": "@ricardoneud.com/api",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Official SDK for the API from Ricardoneud.com, fully compatible with all environments supported by npm",
   "homepage": "https://ricardoneud.com",
   "license": "MIT",
