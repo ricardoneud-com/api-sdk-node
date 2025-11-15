@@ -56,6 +56,12 @@ class RicardoNeudAPI {
     return error;
   }
 
+  setURL(url) {
+    this.baseURL = url;
+    this.client.defaults.baseURL = `${this.baseURL}/${this.version}`;
+    return this;
+  }
+
   setVersion(version) {
     this.version = version;
     this.client.defaults.baseURL = `${this.baseURL}/${version}`;
