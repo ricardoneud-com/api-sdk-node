@@ -9,14 +9,16 @@ This guide explains how to use the **official NPM module** to interact with the 
 ```bash
 npm install @ricardoneud.com/api
 ```
+
 OR
+
 ```bash
 yarn add @ricardoneud.com/api
 ```
 
 ## Initialization
 
-The client can be initialized with either an **API Key** or a **Secret token**:
+The client can be initialized with either an **API Key**, a **Secret token**, and optionally a **custom URL**:
 
 ```javascript
 const RicardoNeudAPI = require('@ricardoneud.com/api');
@@ -25,6 +27,14 @@ const api = new RicardoNeudAPI({
   apiKey: 'your-api-key', // OR use secret: 'your-secret'
   version: 'v4'
 });
+```
+
+### Changing Base URL
+
+You can change the API endpoint at runtime using `setURL`:
+
+```javascript
+api.setURL('https://sandbox.api.ricardoneud.com'); // Switch to sandbox environment
 ```
 
 ### Changing Version
@@ -147,4 +157,6 @@ const api = new RicardoNeudAPI({ apiKey: 'your-api-key', version: 'v4' });
 * You must provide either an **API Key** or a **Secret token**.
 * Secret tokens expire after 24 hours and are visible in your dashboard.
 * API Key and Secret are mutually exclusive; setting one clears the other.
+* You can optionally provide a **custom `baseURL`** at initialization. If omitted, the SDK defaults to `https://api.ricardoneud.com`.
+* The `setURL` method allows switching API domains at runtime (e.g., sandbox or custom client endpoints).
 * Always check the supported API version to ensure endpoint compatibility.
